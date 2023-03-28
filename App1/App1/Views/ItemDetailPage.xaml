@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.ItemDetailPage"
+             Title="Информация">
+
+    <StackLayout Spacing="20" Padding="15">
+        <StackLayout Orientation="Vertical" 
+                        Padding="30,24,30,24" 
+                        Spacing="10" 
+                        HorizontalOptions="Fill">
+            <Label Text="Название: 1984" 
+                   LineBreakMode="WordWrap" 
+                   Style="{DynamicResource ListItemTextStyle}" 
+                   FontSize="18" 
+                   TextColor="Black"/>
+            <Label Text="Автор: Оруэлл Дж." 
+                   LineBreakMode="WordWrap"
+                   Style="{DynamicResource ListItemDetailTextStyle}"
+                   FontSize="18" 
+                   TextColor="Black"/>
+            <Label Text="Издательство: Азбука" 
+                   LineBreakMode="WordWrap"
+                   Style="{DynamicResource ListItemDetailTextStyle}"
+                   FontSize="18" 
+                   TextColor="Black"/>
+            <Label Text="Серия: The Big Book" 
+                   LineBreakMode="WordWrap"
+                   Style="{DynamicResource ListItemDetailTextStyle}"
+                   FontSize="18" 
+                   TextColor="Black"/>
+            <Label Text="Цены" 
+                   LineBreakMode="WordWrap"
+                   Style="{DynamicResource ListItemDetailTextStyle}"
+                   FontSize="18" 
+                   HorizontalOptions="Center"
+                   TextColor="Black"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                <StackLayout HorizontalOptions="Start">
+                    <Label Text="Читай-город"
+                           FontSize="16" 
+                           TextColor="Black"/>
+                    <Label Text="Лабиринт"
+                           FontSize="16" 
+                           TextColor="Black"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Start">
+                    <Label Text="116 руб."
+                           FontSize="16" 
+                           TextColor="Black"/>
+                    <Label Text="199 руб."
+                           FontSize="16" 
+                           TextColor="Black"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Start">
+                    <Label Text="Смотреть"
+                           FontSize="16" 
+                           TextColor="Blue"
+                           TextDecorations="Underline"/>
+                    <Label Text="Смотреть"
+                           FontSize="16" 
+                           TextColor="Blue"
+                           TextDecorations="Underline"/>
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Добавить в избранное"/>
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>

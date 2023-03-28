@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.SortPage"
+             Title="Сортировка">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Array x:Key="sortings" Type="{x:Type x:String}">
+                <x:String>По алфавиту А-Я</x:String>
+                <x:String>По алфавиту Я-А</x:String>
+                <x:String>По автору А-Я</x:String>
+                <x:String>По автору Я-А</x:String>
+                <x:String>По цене (по возрастанию)</x:String>
+                <x:String>По цене (по убыванию)</x:String>
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout Spacing="10" Padding="15">
+                <ListView ItemsSource="{StaticResource Key=sortings}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding}"
+                                      TextColor="Black"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Отмена"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

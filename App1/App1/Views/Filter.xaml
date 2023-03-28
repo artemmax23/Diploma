@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.Filter"
+             Shell.PresentationMode="ModalAnimated"
+             Title="Расширенный поиск"
+             xmlns:vm="clr-namespace:App1.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="White">
+
+    <ContentPage.BindingContext>
+        <vm:FilterViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="15">
+            <Label Text="Название" 
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   TextColor="Black"/>
+            <Entry HorizontalOptions="FillAndExpand" 
+                   TextColor="Black"
+                   Text="{Binding Name, Mode=TwoWay}"/>
+            <Label Text="Автор" 
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   TextColor="Black"/>
+            <Entry HorizontalOptions="FillAndExpand" 
+                   TextColor="Black"
+                   Text="{Binding Author, Mode=TwoWay}"/>
+            <Label Text="Издательство" 
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   TextColor="Black"/>
+            <Entry HorizontalOptions="FillAndExpand" 
+                   TextColor="Black"
+                   Text="{Binding PubHouse, Mode=TwoWay}"/>
+            <Label Text="Серия" 
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   TextColor="Black"/>
+            <Entry HorizontalOptions="FillAndExpand" 
+                   TextColor="Black"
+                   Text="{Binding Seria, Mode=TwoWay}"/>
+            <Label Text="Цена" 
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   TextColor="Black"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="От" 
+                       FontSize="14"
+                       VerticalOptions="Center"
+                       TextColor="Black"/>
+                <Entry HorizontalOptions="FillAndExpand"
+                       TextColor="Black"
+                       Text="{Binding PriceFrom, Mode=TwoWay}"
+                       TextChanged="PriceChange"
+                       Keyboard="Telephone" />
+                <Label Text="До" 
+                       FontSize="14"
+                       VerticalOptions="Center"
+                       TextColor="Black"/>
+                <Entry HorizontalOptions="FillAndExpand"
+                       TextColor="Black"
+                       Text="{Binding PriceTo, Mode=TwoWay}"
+                       TextChanged="PriceChange"
+                       Keyboard="Telephone"/>
+            </StackLayout>
+            <Button Text="Поиск" 
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Green"
+                    Command="{Binding ApplyFilterCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

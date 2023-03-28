@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.ItemsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:App1.ViewModels"  
+             xmlns:model="clr-namespace:App1.Services"  
+             x:Name="BrowseItemsPage">
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <SearchBar x:Name="searchBar"
+                        Placeholder="Поиск" 
+                       SearchCommand="{Binding SearchBarCommand}"
+                       Text="{Binding SearchTerm}"/>
+        </StackLayout>
+        <ScrollView Grid.Row="1" 
+                    HorizontalOptions="Center"
+                    Margin="5, 0">
+            <CollectionView x:Name="BooksListView"
+                ItemsSource="{Binding Books}"
+                SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                     Span="2" 
+                                     HorizontalItemSpacing="5"
+                                     VerticalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Black"  VerticalOptions="Center" CornerRadius="20">
+                            <StackLayout Orientation="Vertical" 
+                                        Padding="0" 
+                                        Spacing="3" 
+                                        HorizontalOptions="Center"
+                                        x:DataType="model:Book">
+                                <Image Source="test.jpg" WidthRequest="150" HeightRequest="150"/>
+                                <Label Text="{Binding title}" 
+                                    LineBreakMode="WordWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16" 
+                                   TextColor="Black"/>
+
+                                <Label Text="{Binding author}" 
+                                    LineBreakMode="WordWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="14" 
+                                   TextColor="SlateGray"/>
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                    <Label Text="{Binding averageCost}"
+                                       FontSize="16" TextColor="Black"/>
+                                    <Label Text="руб."
+                                       FontSize="16" TextColor="Black"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>

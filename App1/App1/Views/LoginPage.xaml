@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App1.ViewModels"  
+             xmlns:model="clr-namespace:App1.Services"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="App1.Views.LoginPage"
+             Title="Мои книги"
+             x:Name="MyBooksPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.BindingContext>
+        <local:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{Binding AddItemCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <SearchBar x:Name="searchBar"
+                        Placeholder="Поиск" 
+                       SearchCommand="{Binding SearchBarCommand}"
+                       Text="{Binding SearchTerm}"/>
+        <ScrollView Grid.Row="1" HorizontalOptions="Fill">
+            <ListView x:Name="ItemsListView1"
+                      HasUnevenRows="True"
+                      ItemsSource="{Binding Books}"
+                      IsGroupingEnabled="True"
+                      SeparatorColor="LightGray">
+                <ListView.Behaviors>
+                    <xct:EventToCommandBehavior 
+                        EventName="ItemSelected"
+                        Command="{Binding SelectMyBooksListItemCommand}"
+                        EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
+                </ListView.Behaviors>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Name}"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   Margin="15, 10, 10, 10"
+                                   FontSize="Medium"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="30, 10, 10, 10">
+                                <Label Text="•"
+                                       TextColor="Black"/>
+                                <Label Text="{Binding Title}" 
+                                      TextColor="Gray"
+                                       FontAttributes="Italic"
+                                       HorizontalOptions="FillAndExpand"/>
+                                <ImageButton Source="icon_menu.png" 
+                                             HeightRequest="20"
+                                             WidthRequest="20"
+                                             HorizontalOptions="End"
+                                             BackgroundColor="White"
+                                             Command="{Binding Path=BindingContext.OpenMenuCommand, Source={x:Reference MyBooksPage}}"
+                                             CommandParameter="{Binding .}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </Grid>
+</ContentPage>
